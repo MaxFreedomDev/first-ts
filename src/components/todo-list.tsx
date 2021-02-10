@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import {useTypedSelector} from "../hooks/use-typed-selector";
 import {useActions} from "../hooks/use-action";
+import Loader from "./loader/loader";
+
 
 const TodoList: React.FC = () => {
     const {todos, loading, error, limit, page } =useTypedSelector(state => state.todo);
@@ -14,7 +16,7 @@ const TodoList: React.FC = () => {
     }, [page]);
 
     if (loading) {
-        return <h1>Loading...</h1>
+        return <Loader />
     }
     if (error) {
         return <h1>{error}</h1>
@@ -30,7 +32,7 @@ const TodoList: React.FC = () => {
                     <div
                         key={index}
                         onClick={()=>setTodoPage(p)}
-                        style={{border: p === page ? "2px solid green" : "1px solid gray", padding: 10}}>
+                        style={{border: p === page ? "2px solid green" : "1px solid gray", padding: 10, cursor: "pointer"}}>
                         {p}
                     </div>
                 ))}

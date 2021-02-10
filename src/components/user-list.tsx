@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import {useTypedSelector} from "../hooks/use-typed-selector";
 import {useActions} from "../hooks/use-action";
+import Loader from "./loader/loader";
+
 
 const UserList: React.FC = () => {
     const { users, error, loading } = useTypedSelector(state => state.user);
@@ -12,7 +14,7 @@ const UserList: React.FC = () => {
     }, []);
 
     if (loading) {
-        return <h1>Loading ....</h1>
+        return <Loader />
     }
 
     if (error) {
